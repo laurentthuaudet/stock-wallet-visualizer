@@ -28,7 +28,28 @@ const StockForm = ({ form, handleChange, handleSubmit, editingId, setEditingId, 
                                 className="w-20 p-3 rounded-lg border border-gray-700 bg-gray-800 text-white focus:outline-none focus:border-indigo-500 transition-colors text-center"
                             />
                         </div>
-                        {/* Bottom Row: Classifications */}
+
+                        {/* Financial Info Row */}
+                        <div className="flex gap-4">
+                            <input
+                                name="averagePrice"
+                                type="number"
+                                placeholder="PRU"
+                                value={form.averagePrice}
+                                onChange={handleChange}
+                                className="flex-1 p-3 rounded-lg border border-gray-700 bg-gray-800 text-white focus:outline-none focus:border-indigo-500 transition-colors"
+                            />
+                            <input
+                                name="currentPrice"
+                                type="number"
+                                placeholder="Prix Actuel"
+                                value={form.currentPrice}
+                                onChange={handleChange}
+                                className="flex-1 p-3 rounded-lg border border-gray-700 bg-gray-800 text-white focus:outline-none focus:border-indigo-500 transition-colors"
+                            />
+                        </div>
+
+                        {/* Classifications */}
                         <input
                             name="classifications"
                             placeholder="Classifications (séparées par virgule)"
@@ -59,15 +80,13 @@ const StockForm = ({ form, handleChange, handleSubmit, editingId, setEditingId, 
                     >
                         {editingId ? 'Modifier l\'action' : 'Ajouter l\'action'}
                     </button>
-                    {editingId && (
-                        <button
-                            type="button"
-                            onClick={() => { setEditingId(null); setForm({ name: '', thesis: '', percentage: '', classifications: '' }); }}
-                            className="px-6 py-2.5 rounded-lg bg-gray-700 hover:bg-gray-600 text-white font-semibold transition-colors shadow-md"
-                        >
-                            Annuler
-                        </button>
-                    )}
+                    <button
+                        type="button"
+                        onClick={() => { setEditingId(null); setForm({ name: '', thesis: '', percentage: '', classifications: '' }); }}
+                        className="px-6 py-2.5 rounded-lg bg-gray-700 hover:bg-gray-600 text-white font-semibold transition-colors shadow-md"
+                    >
+                        {editingId ? 'Annuler' : 'Réinitialiser'}
+                    </button>
                 </div>
             </form>
         </div>

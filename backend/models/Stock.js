@@ -14,9 +14,14 @@ const stockSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
-  classifications: [{
-    type: String
-  }]
+  averagePrice: {
+    type: Number,
+    default: 0
+  },
+  currentPrice: {
+    type: Number,
+    default: 0
+  }
 });
 
 module.exports = mongoose.model('Stock', stockSchema);
