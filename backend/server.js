@@ -21,9 +21,11 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/portfolio
 // Routes
 const stockRoutes = require('./routes/stocks');
 const optionRoutes = require('./routes/options');
+const exchangeRateRoutes = require('./routes/exchangeRates');
 
 app.use('/api/stocks', stockRoutes);
 app.use('/api/options', optionRoutes);
+app.use('/api/exchange-rates', exchangeRateRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);

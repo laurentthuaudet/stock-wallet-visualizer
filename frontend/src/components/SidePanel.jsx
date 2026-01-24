@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SidePanel = ({ isPanelOpen, setIsPanelOpen, handleExport, handleImport }) => {
+const SidePanel = ({ isPanelOpen, setIsPanelOpen, handleExport, handleImport, exchangeRates, setExchangeRates }) => {
     return (
         <>
             {/* Toggle Button */}
@@ -29,6 +29,24 @@ const SidePanel = ({ isPanelOpen, setIsPanelOpen, handleExport, handleImport }) 
                             </svg>
                             Télécharger JSON
                         </button>
+                    </div>
+
+                    <div className="flex flex-col gap-2">
+                        <h3 className="text-lg font-semibold text-gray-300">Taux de Change (1 EUR =)</h3>
+                        <div className="grid grid-cols-2 gap-2">
+                            {Object.entries(exchangeRates).filter(([currency]) => currency !== 'EUR').map(([currency, rate]) => (
+                                <div key={currency} className="flex flex-col">
+                                    <label className="text-xs text-gray-400 mb-1">{currency}</label>
+                                    <input
+                                        type="number"
+                                        step="0.01"
+                                        value={rate}
+                                        onChange={(e) => setExchangeRates({ ...exchangeRates, [currency]: parseFloat(e.target.value) })}
+                                        className="p-2 rounded bg-gray-800 border border-gray-700 text-white text-sm focus:border-indigo-500 outline-none"
+                                    />
+                                </div>
+                            ))}
+                        </div>
                     </div>
 
                     <div className="flex flex-col gap-2">

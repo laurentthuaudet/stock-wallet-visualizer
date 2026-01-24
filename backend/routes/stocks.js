@@ -23,9 +23,10 @@ router.post('/', async (req, res) => {
         name: req.body.name,
         ticker: req.body.ticker,
         thesis: req.body.thesis,
-        percentage: req.body.percentage,
-        classifications: req.body.classifications,
         quantity: req.body.quantity,
+        currency: req.body.currency,
+        classifications: req.body.classifications,
+        strategy: req.body.strategy,
         averagePrice: req.body.averagePrice,
         currentPrice: req.body.currentPrice
     });
@@ -47,9 +48,10 @@ router.put('/:id', async (req, res) => {
         stock.name = req.body.name || stock.name;
         stock.ticker = req.body.ticker || stock.ticker;
         stock.thesis = req.body.thesis || stock.thesis;
-        stock.percentage = req.body.percentage || stock.percentage;
+        stock.quantity = req.body.quantity !== undefined ? req.body.quantity : stock.quantity;
+        stock.currency = req.body.currency || stock.currency;
         stock.classifications = req.body.classifications || stock.classifications;
-        stock.quantity = req.body.quantity || stock.quantity;
+        stock.strategy = req.body.strategy || stock.strategy;
         stock.averagePrice = req.body.averagePrice || stock.averagePrice;
         stock.currentPrice = req.body.currentPrice || stock.currentPrice;
 

@@ -14,9 +14,20 @@ const stockSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  quantity: {
+    type: Number,
+    required: true,
+    default: 0
+  },
+  currency: {
+    type: String,
+    required: true,
+    default: 'EUR',
+    enum: ['EUR', 'USD', 'JPY', 'NOK', 'SEK', 'AUD', 'CAD']
+  },
   percentage: {
     type: Number,
-    required: true
+    default: 0
   },
   averagePrice: {
     type: Number,
@@ -29,6 +40,11 @@ const stockSchema = new mongoose.Schema({
   classifications: {
     type: [String],
     default: []
+  },
+  strategy: {
+    type: String,
+    enum: ['etf', 'holding', 'perso', 'cash'],
+    default: 'perso'
   }
 });
 

@@ -8,7 +8,7 @@ const StockForm = ({ form, handleChange, handleSubmit, editingId, setEditingId, 
                 <div className="flex flex-col gap-6">
                     {/* Left Column */}
                     <div className="flex-1 flex flex-col gap-4">
-                        {/* Top Row: Name + Percentage */}
+                        {/* Top Row: Name + Currency */}
                         <div className="flex gap-4">
                             <input
                                 name="ticker"
@@ -25,26 +25,40 @@ const StockForm = ({ form, handleChange, handleSubmit, editingId, setEditingId, 
                                 required
                                 className="flex-1 p-3 rounded-lg border border-gray-700 bg-gray-800 text-white focus:outline-none focus:border-indigo-500 transition-colors"
                             />
-                            <input
-                                name="percentage"
-                                type="number"
-                                placeholder="%"
-                                value={form.percentage}
+                            <select
+                                name="currency"
+                                value={form.currency}
                                 onChange={handleChange}
-                                required
-                                className="w-20 p-3 rounded-lg border border-gray-700 bg-gray-800 text-white focus:outline-none focus:border-indigo-500 transition-colors text-center"
-                            />
+                                className="w-24 p-3 rounded-lg border border-gray-700 bg-gray-800 text-white focus:outline-none focus:border-indigo-500 transition-colors"
+                            >
+                                <option value="EUR">EUR</option>
+                                <option value="USD">USD</option>
+                                <option value="JPY">JPY</option>
+                                <option value="NOK">NOK</option>
+                                <option value="SEK">SEK</option>
+                                <option value="AUD">AUD</option>
+                                <option value="CAD">CAD</option>
+                            </select>
                         </div>
 
-                        {/* Financial Info Row */}
+                        {/* Financial Info & details Row */}
                         <div className="flex gap-4">
+                            <input
+                                name="quantity"
+                                type="number"
+                                placeholder="Qté"
+                                value={form.quantity}
+                                onChange={handleChange}
+                                required
+                                className="w-24 p-3 rounded-lg border border-gray-700 bg-gray-800 text-white focus:outline-none focus:border-indigo-500 transition-colors text-center"
+                            />
                             <input
                                 name="averagePrice"
                                 type="number"
                                 placeholder="PRU"
                                 value={form.averagePrice}
                                 onChange={handleChange}
-                                className="flex-1 p-3 rounded-lg border border-gray-700 bg-gray-800 text-white focus:outline-none focus:border-indigo-500 transition-colors"
+                                className="w-52 p-3 rounded-lg border border-gray-700 bg-gray-800 text-white focus:outline-none focus:border-indigo-500 transition-colors"
                             />
                             <input
                                 name="currentPrice"
@@ -52,18 +66,28 @@ const StockForm = ({ form, handleChange, handleSubmit, editingId, setEditingId, 
                                 placeholder="Prix Actuel"
                                 value={form.currentPrice}
                                 onChange={handleChange}
+                                className="w-52 p-3 rounded-lg border border-gray-700 bg-gray-800 text-white focus:outline-none focus:border-indigo-500 transition-colors"
+                            />
+                            <select
+                                name="strategy"
+                                value={form.strategy}
+                                onChange={handleChange}
+                                className="w-32 p-3 rounded-lg border border-gray-700 bg-gray-800 text-white focus:outline-none focus:border-indigo-500 transition-colors"
+                            >
+                                <option value="perso">Perso</option>
+                                <option value="etf">ETF</option>
+                                <option value="holding">Holding</option>
+                                <option value="cash">Cash</option>
+                            </select>
+                            <input
+                                name="classifications"
+                                placeholder="Tags"
+                                value={form.classifications}
+                                onChange={handleChange}
                                 className="flex-1 p-3 rounded-lg border border-gray-700 bg-gray-800 text-white focus:outline-none focus:border-indigo-500 transition-colors"
                             />
                         </div>
 
-                        {/* Classifications */}
-                        <input
-                            name="classifications"
-                            placeholder="Classifications (séparées par virgule)"
-                            value={form.classifications}
-                            onChange={handleChange}
-                            className="w-full p-3 rounded-lg border border-gray-700 bg-gray-800 text-white focus:outline-none focus:border-indigo-500 transition-colors"
-                        />
                     </div>
 
                     {/* Right Column: Thesis */}
@@ -89,7 +113,7 @@ const StockForm = ({ form, handleChange, handleSubmit, editingId, setEditingId, 
                     </button>
                     <button
                         type="button"
-                        onClick={() => { setEditingId(null); setForm({ name: '', ticker: '', thesis: '', percentage: '', classifications: '' }); }}
+                        onClick={() => { setEditingId(null); setForm({ name: '', ticker: '', thesis: '', quantity: '', currency: 'EUR', classifications: '', averagePrice: '', currentPrice: '' }); }}
                         className="px-6 py-2.5 rounded-lg bg-gray-700 hover:bg-gray-600 text-white font-semibold transition-colors shadow-md"
                     >
                         {editingId ? 'Annuler' : 'Réinitialiser'}
