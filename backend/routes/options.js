@@ -15,6 +15,7 @@ router.get('/', async (req, res) => {
 // POST a new option
 router.post('/', async (req, res) => {
     const option = new Option({
+        ticker: req.body.ticker,
         underlying: req.body.underlying,
         direction: req.body.direction,
         side: req.body.side,
@@ -39,6 +40,7 @@ router.put('/:id', async (req, res) => {
         const option = await Option.findById(req.params.id);
         if (!option) return res.status(404).json({ message: 'Option not found' });
 
+        option.ticker = req.body.ticker || option.ticker;
         option.underlying = req.body.underlying || option.underlying;
         option.direction = req.body.direction || option.direction;
         option.side = req.body.side || option.side;

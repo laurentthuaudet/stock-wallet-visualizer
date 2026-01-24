@@ -13,6 +13,7 @@ const StockPortfolio = () => {
     const [editingId, setEditingId] = useState(null);
     const [form, setForm] = useState({
         name: '',
+        ticker: '',
         thesis: '',
         percentage: '',
         classifications: '',
@@ -59,7 +60,7 @@ const StockPortfolio = () => {
             } else {
                 await axios.post(`${API_URL}/api/stocks`, newStock);
             }
-            setForm({ name: '', thesis: '', percentage: '', classifications: '', averagePrice: '', currentPrice: '' });
+            setForm({ name: '', ticker: '', thesis: '', percentage: '', classifications: '', averagePrice: '', currentPrice: '' });
             fetchStocks();
         } catch (error) {
             console.error("Error saving stock:", error);
@@ -74,9 +75,10 @@ const StockPortfolio = () => {
     const handleEdit = (stock) => {
         setForm({
             name: stock.name,
+            ticker: stock.ticker,
             thesis: stock.thesis,
             percentage: stock.percentage,
-            classifications: stock.classifications.join(', '),
+            classifications: (stock.classifications || []).join(', '),
             averagePrice: stock.averagePrice || '',
             currentPrice: stock.currentPrice || ''
         });
@@ -155,7 +157,7 @@ const StockPortfolio = () => {
     // Calculate Classification Weights
     const classificationWeights = {};
     stocks.forEach(stock => {
-        stock.classifications.forEach(cls => {
+        (stock.classifications || []).forEach(cls => {
             if (!classificationWeights[cls]) {
                 classificationWeights[cls] = 0;
             }

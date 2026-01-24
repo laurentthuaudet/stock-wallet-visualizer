@@ -6,6 +6,7 @@ import OptionList from '../components/OptionList';
 const OptionPortfolio = () => {
     const [options, setOptions] = useState([]);
     const [form, setForm] = useState({
+        ticker: '',
         underlying: '',
         direction: 'CALL', // CALL or PUT
         side: 'ACHAT', // ACHAT or VENTE
@@ -54,6 +55,7 @@ const OptionPortfolio = () => {
                 await axios.post(`${API_URL}/api/options`, newOption);
             }
             setForm({
+                ticker: '',
                 underlying: '',
                 direction: 'CALL',
                 side: 'ACHAT',
@@ -76,6 +78,7 @@ const OptionPortfolio = () => {
 
     const handleEdit = (option) => {
         setForm({
+            ticker: option.ticker || '',
             underlying: option.underlying,
             direction: option.direction,
             side: option.side,

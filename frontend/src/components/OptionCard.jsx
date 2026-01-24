@@ -6,7 +6,10 @@ const OptionCard = ({ option, handleEdit, handleDelete }) => {
         <div className="bg-gray-800 rounded-xl p-5 shadow-lg border border-gray-700 relative group hover:border-purple-500/50 transition-colors">
             <div className="flex justify-between items-start mb-4">
                 <div className="cursor-pointer flex-1" onClick={() => handleEdit(option)}>
-                    <h3 className="text-xl font-bold text-white hover:text-purple-400 transition-colors mb-2 text-left">{option.underlying}</h3>
+                    <h3 className="text-xl font-bold text-white hover:text-purple-400 transition-colors mb-2 text-left">
+                        {option.underlying}
+                        {option.ticker && <span className="text-gray-400 text-sm ml-2 font-normal">({option.ticker})</span>}
+                    </h3>
 
                     {/* Line 1: Type & Date */}
                     <div className="flex flex-wrap gap-2 mb-2">

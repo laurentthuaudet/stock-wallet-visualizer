@@ -4,6 +4,7 @@ const OptionForm = ({ form, handleChange, handleSubmit, editingId, setEditingId,
 
     const handleReset = () => {
         setForm({
+            ticker: '',
             underlying: '',
             direction: 'CALL',
             side: 'ACHAT',
@@ -28,8 +29,16 @@ const OptionForm = ({ form, handleChange, handleSubmit, editingId, setEditingId,
                 {/* Row 1: Underlying, Premium, Quantity, Current Price */}
                 <div className="flex flex-col md:flex-row gap-6">
                     <input
+                        name="ticker"
+                        placeholder="Ticker"
+                        value={form.ticker}
+                        onChange={handleChange}
+                        required
+                        className="w-24 p-3 rounded-lg border border-gray-700 bg-gray-800 text-white focus:outline-none focus:border-purple-500 transition-colors uppercase"
+                    />
+                    <input
                         name="underlying"
-                        placeholder="Sous-jacent (ex: AAPL)"
+                        placeholder="Sous-jacent (Nom)"
                         value={form.underlying}
                         onChange={handleChange}
                         required

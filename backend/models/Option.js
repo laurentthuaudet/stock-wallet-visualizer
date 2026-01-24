@@ -1,6 +1,11 @@
 const mongoose = require('mongoose');
 
 const optionSchema = new mongoose.Schema({
+    ticker: {
+        type: String,
+        required: true,
+        uppercase: true
+    },
     underlying: {
         type: String,
         required: true

@@ -11,6 +11,13 @@ const StockForm = ({ form, handleChange, handleSubmit, editingId, setEditingId, 
                         {/* Top Row: Name + Percentage */}
                         <div className="flex gap-4">
                             <input
+                                name="ticker"
+                                placeholder="Ticker (Symbol)"
+                                value={form.ticker}
+                                onChange={handleChange}
+                                className="w-40 p-3 rounded-lg border border-gray-700 bg-gray-800 text-white focus:outline-none focus:border-indigo-500 transition-colors uppercase"
+                            />
+                            <input
                                 name="name"
                                 placeholder="Nom de l'action"
                                 value={form.name}
@@ -82,7 +89,7 @@ const StockForm = ({ form, handleChange, handleSubmit, editingId, setEditingId, 
                     </button>
                     <button
                         type="button"
-                        onClick={() => { setEditingId(null); setForm({ name: '', thesis: '', percentage: '', classifications: '' }); }}
+                        onClick={() => { setEditingId(null); setForm({ name: '', ticker: '', thesis: '', percentage: '', classifications: '' }); }}
                         className="px-6 py-2.5 rounded-lg bg-gray-700 hover:bg-gray-600 text-white font-semibold transition-colors shadow-md"
                     >
                         {editingId ? 'Annuler' : 'Réinitialiser'}

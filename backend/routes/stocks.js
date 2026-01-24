@@ -21,6 +21,7 @@ router.post('/', async (req, res) => {
 
     const stock = new Stock({
         name: req.body.name,
+        ticker: req.body.ticker,
         thesis: req.body.thesis,
         percentage: req.body.percentage,
         classifications: req.body.classifications,
@@ -44,6 +45,7 @@ router.put('/:id', async (req, res) => {
         if (!stock) return res.status(404).json({ message: 'Stock not found' });
 
         stock.name = req.body.name || stock.name;
+        stock.ticker = req.body.ticker || stock.ticker;
         stock.thesis = req.body.thesis || stock.thesis;
         stock.percentage = req.body.percentage || stock.percentage;
         stock.classifications = req.body.classifications || stock.classifications;

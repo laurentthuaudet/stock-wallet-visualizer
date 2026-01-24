@@ -6,6 +6,10 @@ const stockSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
+  ticker: {
+    type: String,
+    uppercase: true
+  },
   thesis: {
     type: String,
     required: true
@@ -21,6 +25,10 @@ const stockSchema = new mongoose.Schema({
   currentPrice: {
     type: Number,
     default: 0
+  },
+  classifications: {
+    type: [String],
+    default: []
   }
 });
 
